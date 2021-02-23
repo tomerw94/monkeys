@@ -1,0 +1,38 @@
+<nb-flip-card [showToggleButton]="false" [flipped]="flipped" style="height: 110px; width: 75px;">
+  <nb-card-front>
+    <nb-card [ngClass]="{'hovered': hovered, 'normal': !hovered}" (mouseleave)="unhover()" (mouseenter)="hover()"
+      (mousedown)="drag()" (mouseup)="undrag()">
+      <!-- <div>
+        <img src='{{card.frontCardUrl}}' height="110" width="73">
+      </div> -->
+      <!-- <app-full-card [setCard]="card" *ngIf="hovered" style="position: absolute; margin-left: 30px; bottom: 45px;">
+      </app-full-card> -->
+      <div style="height: '110px';">
+        <div style="background-color: rgb(198, 159, 243); height: 40px; width: 73px; position: absolute; bottom: 31px">
+          <label
+            style="margin-left: 2px; position: absolute; text-decoration: underline; position: absolute; bottom: 25px; font-size:xx-small;">{{card.name}}</label>
+          <label
+            style="left: 20px; width: 30px; line-height: 5px; position: absolute; bottom: 10px; font-size:5px">{{card.text}}</label>
+        </div>
+        <div *ngIf="typeOfCard(card)==='minion'">
+          <label class="attack" style="position: absolute; bottom: 31px;">{{card.attack}}</label>
+        </div>
+        <div *ngIf=" typeOfCard(card)==='minion'">
+          <label class="health" style="margin-left: 55px; position: absolute; bottom: 31px;">{{card.health}}</label>
+        </div>
+        <div>
+          <label class="mana" style="position: absolute; bottom: 118px;">{{card.manaCost}}</label>
+        </div>
+      </div>
+    </nb-card>
+
+  </nb-card-front>
+  <nb-card-back>
+    <nb-card [ngClass]=" {'hovered': hovered, 'normal' : !hovered}" style="height: '110px'; width: 75px;"
+      (mouseenter)="hover()" (mouseleave)="unhover()">
+      <div>
+        <img src='{{card.cardBackUrl}}' height="110" width="73">
+      </div>
+    </nb-card>
+  </nb-card-back>
+</nb-flip-card>

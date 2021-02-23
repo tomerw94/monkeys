@@ -1,0 +1,28 @@
+<!-- <div class="boundary-drop">
+</div> -->
+<div cdkDropList [cdkDropListData]="game.player.hand" cdkDropListSortingDisabled (cdkDropListDropped)="drop($event)"
+  class="example-list" cdkDropListOrientation="horizontal" [cdkDropListEnterPredicate]="noReturnPredicate" id="hand"
+  [cdkDropListConnectedTo]="['playerBoard']">
+  <app-card [setCard]="card" *ngFor="let card of game.player.hand" cdkDrag class="hand-card"
+    (hoverEvent)="setHovered($event)" (mouseup)="unDrag()" (mousedown)="setDragged(card.id)"
+    (cdkDragReleased)="dragStart(-1)" (cdkDragStarted)="dragStart(card.id)">
+  </app-card>
+  <!-- <div *ngFor="let card of game.player.hand" cdkDrag class="hand-card">
+    {{card.name}}
+  </div> -->
+  <!-- <app-card *ngIf="draggedId!==card.id" (hoverEvent)="setHovered($event)" [setCard]="card" [setFlipped]="false"
+      style="float: left;">
+    </app-card> -->
+  <!-- <app-full-card [setCard]=" card" *ngIf="hoveredId===card.id && draggedId > -1"
+      style="position: absolute; margin-left: -100px; bottom: 45px; z-index: 1;">
+    </app-full-card> -->
+
+  <ng-container *ngFor="let card of game.player.hand; let idx = index">
+    <app-full-card *ngIf="hoveredId===card.id && draggedId == -1" [setCard]="card"
+      style="position: fixed; bottom: 45px; z-index: 1;" [style.left.px]="idx * 65 + 580">
+    </app-full-card>
+  </ng-container>
+  <!-- <app-card *ngIf="draggedId===card.id" (hoverEvent)="setHovered($event)" (dragEvent)="setDragged($event)"
+      [setCard]="card" [setFlipped]="false" style="float: left;" cdkDrag>
+    </app-card> -->
+</div>

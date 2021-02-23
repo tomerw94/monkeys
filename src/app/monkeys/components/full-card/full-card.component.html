@@ -1,0 +1,23 @@
+<nb-card style="height: '300px'; width: 200px;">
+  <div id="fullCard" style="height: '300px'; width: 200px;">
+    <div
+      style="background-color: rgb(198, 159, 243); height: 110px; width: 200px; margin-left: -25px; position: absolute; bottom: 31px">
+      <label
+        style="margin-left: 3px; position: absolute; bottom: 85px; text-decoration: underline; position: absolute; font-size: large;">{{card.name}}</label>
+      <label
+        style="left: 45px; width: 120px; line-height: 25px; position: absolute; bottom: 10px; font-size:medium">{{card.text}}</label>
+    </div>
+    <div *ngIf="typeOfCard(card)==='minion'">
+      <label class="attack"
+        style="padding-top: 10px; height: 40px; margin-left: -25px; position: absolute; bottom: 40px;">{{card.attack}}</label>
+    </div>
+    <div *ngIf=" typeOfCard(card)==='minion'">
+      <label class="health"
+        style="padding-top: 10px; height: 40px; margin-left: 145px; position: absolute; bottom: 40px;">{{card.health}}</label>
+    </div>
+    <div>
+      <label class="mana"
+        style="padding-top: 10px; height: 40px; margin-left: -25px; position: absolute; bottom: 285px;">{{card.manaCost}}</label>
+    </div>
+  </div>
+</nb-card>

@@ -1,0 +1,38 @@
+<div style="width: 1450px; height: 150px; padding-bottom: 200px;">
+  <div>
+    <h2 style="float:left; width: 300px;">opponent hand: ({{enemy.hand.length}})</h2>
+    <div *ngFor="let card of enemy.hand" style="float:left; height: 115px; width:60px;">
+      <app-card [setCard]="card" [setFlipped]="true"></app-card>
+    </div>
+  </div>
+  <div style="float:right;">
+    <h2>opponent deck:({{enemy.deck.length}})</h2>
+  </div>
+</div>
+<div class="board" id="board" (mouseenter)="setBoardHovered($event)" (mouseleave)=setBoardHovered($event)>
+  <app-board (dragEvent)="setBoardDragged($event)" [setBoardHovered]="boardHovered" [setHandDraggedId]="handDraggedId"
+    [setGame]="game" (hoverEvent)="setBoardHovered($event)"></app-board>
+</div>
+<!-- <div style="width: 1450px; height: 150px;">
+  <h2 style="float:left; width: 300px;">opponent board:({{enemy.board.length}})</h2>
+  <div *ngFor="let card of enemy.board" style="float:left; width: 150px;">
+    <h2>{{card.name}}</h2>
+  </div>
+</div>
+<div style="width: 1450px; height: 150px;">
+  <h2 style="float:left; width: 300px;">your board:({{player.board.length}})</h2>
+  <div *ngFor="let card of player.board" style="float:left; width: 150px;">
+    <h2>{{card.name}}</h2>
+  </div>
+</div> -->
+<!-- <div>
+    <h2 style="float:left;">your hand:({{player.hand.length}})</h2>
+    <div *ngFor="let card of player.hand" style="float:left;">
+      <app-card [setCard]="card"></app-card>
+    </div>
+  </div> -->
+<div style="position: absolute; bottom: 0px; margin-left: 500px;">
+  <app-player-hand [setBoardHovered]="boardHovered" [setBoardDraggedId]="setBoardDraggedId"
+    (dragEvent)="setHandDragged($event)" [setGame]="game" id="player-hand">
+  </app-player-hand>
+</div>

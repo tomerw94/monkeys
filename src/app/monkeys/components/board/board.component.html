@@ -1,0 +1,58 @@
+<!-- <div class="row" style="position: absolute; margin-left: 300px;">
+  <div *ngFor="let minion of game.enemy.board" style="float: left;">
+    <app-card (hoverEvent)="setHovered($event)" [setCard]="minion" [setFlipped]="false"></app-card>
+    <app-full-card [setCard]="minion" *ngIf="hoveredId===minion.id"
+      style="position: absolute; margin-left: 65px; bottom: -35px; z-index: 1;"></app-full-card>
+  </div>
+</div> -->
+
+<div class="example-list" style="position: absolute; left: 400px; bottom: 500px;">
+  <app-card [setCard]="minion" *ngFor="let minion of game.enemy.board" class="board-card"
+    (hoverEvent)="setHovered($event)" (mouseup)="unDrag()" (mousedown)="setDragged(minion.id)"
+    (hoverEvent)="setHoveredEnemyMinionId($event)">
+  </app-card>
+  <ng-container *ngFor="let minion of game.enemy.board; let idx = index">
+    <app-full-card *ngIf="hoveredId===minion.id" [setCard]="minion" style="position: fixed; bottom: 465px; z-index: 1;"
+      [style.left.px]="idx * 105 + 490">
+    </app-full-card>
+  </ng-container>
+</div>
+
+<!-- <div cdkDropList [cdkDropListData]="game.enemy.board" id="enemyBoard" [cdkDropListSortingDisabled]="true"
+  [cdkDropListConnectedTo]="['playerBoard']" (cdkDropListDropped)="drop($event)" class="example-list"
+  cdkDropListOrientation="horizontal" style="position: absolute; left: 400px; bottom: 500px;">
+  <app-card [setCard]="minion" *ngFor="let minion of game.enemy.board" cdkDrag class="board-card"
+    (hoverEvent)="setHovered($event)" (mouseup)="unDrag()" (mousedown)="setDragged(minion.id)"
+    (hoverEvent)="setHoveredEnemyMinionId($event)">
+  </app-card>
+  <ng-container *ngFor="let minion of game.enemy.board; let idx = index">
+    <app-full-card *ngIf="hoveredId===minion.id" [setCard]="minion" style="position: fixed; bottom: 465px; z-index: 1;"
+      [style.left.px]="idx * 105 + 490">
+    </app-full-card>
+  </ng-container>
+</div> -->
+
+
+
+<!-- <div id="playerBoard" cdkDropList [cdkDropListData]="game.player.board" cdkDropListConnectedTo="hand"
+  (cdkDropListDropped)="drop($event)" [cdkDropListEnterPredicate]="enterBoard" class="row"
+  style="position: absolute; margin-left: 300px; bottom: 250px; width: 500px">
+  <div *ngFor="let minion of game.player.board" cdkDrag [cdkDragData]="minion" style="float: left;">
+
+    <app-card (hoverEvent)="setHovered($event)" [setCard]="minion" [setFlipped]="false">
+    </app-card>
+    <app-full-card [setCard]="minion" *ngIf="hoveredId===minion.id"
+      style="position: absolute; margin-left: 50px; bottom: 45px; z-index: 1;"></app-full-card>
+  </div>
+</div> -->
+<div cdkDropList [cdkDropListData]="game.player.board" id="playerBoard"
+  [cdkDropListSortingDisabled]="handDraggedId===-1" [cdkDropListEnterPredicate]="isMinionPredicate(handDraggedId)"
+  cdkDropListConnectedTo="hand" (cdkDropListDropped)="drop($event)" class="example-list"
+  cdkDropListOrientation="horizontal" style="position: absolute; left: 400px; bottom: 300px;"
+  [style.margin-left.px]="280 - game.player.board.length * 35">
+  <app-card [setCard]="minion" *ngFor="let minion of game.player.board; let idpb = index" cdkDrag class="board-card"
+    (hoverEvent)="setHovered($event)" (mouseup)="unDrag()" (mousedown)="setDragged(minion.id)"
+    (cdkDragReleased)="dragStart(-1)" (cdkDragStarted)="dragStart(minion.id)" (mouseup)="unDrag()"
+    (mousedown)="setDragged(minion.id)">
+  </app-card>
+</div>
